@@ -1,16 +1,97 @@
 ---
-
+import "css/app.css";
+import core from "frankenstyle/js/hwc-core.iife?url";
+import components from "frankenstyle/js/hwc-components.iife?url";
+import icon from "frankenstyle/js/hwc-icon.iife?url";
+// import chart from "frankenstyle/js/hwc-chart.iife?url";
 ---
 
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+    <link
+      rel="preload"
+      href="/fonts/geist-font/fonts/GeistVariableVF.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/geist-font/fonts/GeistMonoVariableVF.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/fonts/geist-font/style.css" />
+
+    <script is:inline>
+      const htmlElement = document.documentElement;
+
+      const __FRANKEN__ = JSON.parse(
+        localStorage.getItem("__FRANKEN__") || "{}",
+      );
+
+      if (
+        __FRANKEN__.mode === "dark" ||
+        (!__FRANKEN__.mode &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        htmlElement.classList.add("dark");
+      } else {
+        htmlElement.classList.remove("dark");
+      }
+
+      htmlElement.classList.add(__FRANKEN__.theme || "uk-theme-zinc");
+      htmlElement.classList.add(__FRANKEN__.radii || "uk-radii-md");
+      htmlElement.classList.add(__FRANKEN__.shadows || "uk-shadows-sm");
+      htmlElement.classList.add(__FRANKEN__.font || "uk-font-sm");
+      htmlElement.classList.add(__FRANKEN__.chart || "uk-chart-default");
+    </script>
+
+    <script is:inline src={core} type="module"></script>
+  </head>
+  <body class="bg-background font-geist-sans text-foreground antialiased">
+    <!-- START CODING HERE -->
+    <div class="uk-container mt-40">
+      <div class="space-y-4">
+        <h1 class="uk-hero-sm text-center font-bold">FrankenstyleKit</h1>
+        <div class="flex justify-center">
+          <uk-lsh
+            class="size-8"
+            toggle
+            group="mode"
+            cls="uk-button uk-button-icon uk-button-secondary uk-button-small relative"
+          >
+            <template data-fn="template">
+              <uk-icon
+                class="dark-slide-icon dark-slide-moon dark:dark-slide-moon"
+                icon="moon"
+              >
+              </uk-icon>
+              <uk-icon
+                class="dark-slide-icon dark-slide-sun dark:dark-slide-sun"
+                icon="sun"
+              >
+              </uk-icon>
+            </template>
+          </uk-lsh>
+        </div>
+      </div>
+    </div>
+    <!-- END -->
+
+    <script>
+      // window.Lucide = {};
+      window.ApexCharts = {};
+    </script>
+    <script is:inline src={icon} type="module"></script>
+    <!-- <script is:inline src={chart} type="module"></script> -->
+    <script is:inline src={components} type="module"></script>
+  </body>
 </html>
