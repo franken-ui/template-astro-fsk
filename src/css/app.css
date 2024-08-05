@@ -1,0 +1,113 @@
+@layer properties, theme, base, components, styles, utilities;
+
+@import "tailwindcss";
+@import "frankenstyle/css/frankenstyle-kit-standalone.css";
+/* @import "frankenstyle/css/chart.css"; */
+
+@theme {
+  --color-background: var(--uk-bg);
+  --color-foreground: var(--uk-bg-f);
+
+  --color-card: var(--uk-card);
+  --color-card-foreground: var(--uk-card-f);
+
+  --color-popover: var(--uk-popover);
+  --color-popover-foreground: var(--uk-popover-f);
+
+  --color-primary: var(--uk-primary);
+  --color-primary-foreground: var(--uk-primary-f);
+
+  --color-secondary: color-mix(
+    in srgb,
+    var(--uk-secondary) var(--uk-secondary-o),
+    transparent
+  );
+  --color-secondary-foreground: var(--uk-secondary-f);
+
+  --color-muted: color-mix(
+    in srgb,
+    var(--uk-muted) var(--uk-muted-o),
+    transparent
+  );
+  --color-muted-foreground: var(--uk-muted-f);
+
+  --color-accent: color-mix(
+    in srgb,
+    var(--uk-accent) var(--uk-accent-o),
+    transparent
+  );
+  --color-accent-foreground: var(--uk-accent-f);
+
+  --color-destructive: var(--uk-danger);
+  --color-destructive-foreground: var(--uk-danger-f);
+
+  --color-info: var(--uk-info);
+  --color-info-foreground: var(--uk-info-f);
+
+  --color-success: var(--uk-success);
+  --color-success-foreground: var(--uk-success-f);
+
+  --color-warning: var(--uk-warning);
+  --color-warning-foreground: var(--uk-warning-f);
+
+  --color-border: color-mix(
+    in srgb,
+    var(--uk-border) var(--uk-border-o),
+    transparent
+  );
+
+  --color-input: color-mix(
+    in srgb,
+    var(--uk-input) var(--uk-input-o),
+    transparent
+  );
+
+  --color-ring: var(--uk-focus);
+
+  --font-geist-sans:
+    Geist Sans, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+  --font-geist-mono:
+    Geist Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+@layer base {
+  .dark-slide-icon {
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .dark-slide-sun {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .dark-slide-moon {
+    transform: translate(-50%, 0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .dark\:dark-slide-moon:where(.dark, .dark *) {
+    transform: translate(-50%, 100%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .dark\:dark-slide-sun:where(.dark, .dark *) {
+    transform: translate(-50%, 0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
